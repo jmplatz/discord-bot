@@ -3,8 +3,8 @@
 const ping = require('./ping');
 const eightBall = require('./8Ball');
 
-const guildID = '425816077176406029';
-const channelID = '425816077176406032';
+const guildID = process.env.GUILD_ID;
+const channelID = process.env.CHANNEL_ID;
 
 const commands = {
   ping,
