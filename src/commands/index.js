@@ -1,19 +1,20 @@
 /* eslint-disable linebreak-style */
 require('dotenv').config();
 
-const ping = require('./ping');
+const pingCommand = require('./ping');
 const eightBall = require('./8Ball');
+const list = require('./commandList');
 
 const guildID = process.env.GUILD_ID;
 const channelID = process.env.CHANNEL_ID;
 
 const commands = {
-  ping,
-  '8Ball': eightBall,
+  ping: pingCommand,
+  '8ball': eightBall,
+  commandList: list,
 };
 
 module.exports = async (msg) => {
-  console.log(msg);
   if (msg.guild.id === guildID && msg.channel.id === channelID) {
     // Getting just the command
     const args = msg.content.split(' ');

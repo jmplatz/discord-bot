@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-console */
 const eightBall = ['As I see it, yes.',
   'Ask again later.',
   'Better not tell you now',
@@ -13,4 +14,5 @@ module.exports = async (msg, args) => {
   const i = Math.floor(Math.random() * eightBall.length);
   const reply = eightBall[i];
   await msg.channel.send(`${msg.author} ${reply}`);
+  console.log('Reply was sent!');
 };
