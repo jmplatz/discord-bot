@@ -1,5 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
+require('dotenv').config();
+
 const ping = require('./ping');
 const eightBall = require('./8Ball');
 
