@@ -22,7 +22,7 @@ module.exports = async (msg) => {
 
     if (args.length === 0 || args[0].charAt(0) !== '!') return;
 
-    const command = args.shift().substr(1);
+    const command = args.shift().substr(1).toLowerCase();
     if (Object.keys(commands).includes(command)) {
       commands[command](msg, args);
     }
