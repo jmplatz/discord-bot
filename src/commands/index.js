@@ -6,7 +6,7 @@ const eightBall = require('./8Ball');
 const list = require('./commandList');
 
 const guildID = process.env.GUILD_ID;
-const channelID = process.env.CHANNEL_ID;
+// const channelID = process.env.CHANNEL_ID;
 
 const commands = {
   ping: pingCommand,
@@ -15,7 +15,8 @@ const commands = {
 };
 
 module.exports = async (msg) => {
-  if (msg.guild.id === guildID && msg.channel.id === channelID) {
+  // && msg.channel.id === channelID
+  if (msg.guild.id === guildID) {
     // Getting just the command
     const args = msg.content.split(' ');
 
