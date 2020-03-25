@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const Discord = require('discord.js');
 const commandHandler = require('./commands');
-
+// Create new instance of Client
 const client = new Discord.Client();
 
 const {

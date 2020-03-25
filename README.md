@@ -1,21 +1,20 @@
-<!-- @format -->
-
 discord-bot
 
 ## TODO
 
-- [ ] Setup project dependencies
+- [x] Setup project dependencies
   - npm init -y
   - npm i discord.js dotenv
-- [ ] Setup eslint
+- [x] Setup eslint
   - npm i -D eslint
-  - npc eslint --init
-- [ ] Create a Discord Application / Bot
+  - npx eslint --init
+- [x] Create a Discord Application / Bot
   - https://discordjs.guide/preparations/setting-up-a-bot-application.html
-- [ ] Add the bot to a Server
+- [x] Add the bot to a Server
   - https://discordjs.guide/preparations/adding-your-bot-to-servers.html
-- [ ] Setup a basic bot
+- [x] Setup a basic bot
   - https://discordjs.guide/creating-your-bot/#creating-the-bot-file
-- [ ] Build an "echo" command
-- [ ] Build an "8 ball" command
-- [ ] Build another command...
+- [x] Build an "echo" command
+- [x] Build an "8 ball" command
+- [x] Refactor and create a command handler
+- [x] Build a "command list" command
