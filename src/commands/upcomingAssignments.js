@@ -1,5 +1,4 @@
-module.exports = async msg => {
-    
+module.exports = async (msg) => {
     const {google} = require('googleapis');
     require('dotenv').config();
     const GOOGLE_API = process.env.GOOGLE_API_KEY;
