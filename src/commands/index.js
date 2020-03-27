@@ -1,17 +1,20 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-console */
 require('dotenv').config();
 
+const listCommand = require('./commandlist');
 const pingCommand = require('./ping');
-const eightBall = require('./8Ball');
-const list = require('./commandList');
+const eightBallCommand = require('./8ball');
+const gifCommand = require('./getgif');
 
 const guildID = process.env.GUILD_ID;
 
 // Command List Object
 const commands = {
   ping: pingCommand,
-  '8ball': eightBall,
-  commandList: list,
+  '8ball': eightBallCommand,
+  commandlist: listCommand,
+  getgif: gifCommand,
 };
 
 module.exports = async (msg) => {
@@ -19,7 +22,7 @@ module.exports = async (msg) => {
     // Getting just the command
     const args = msg.content.split(' ');
     // If it is an empty string or doesn't include !, return
-    if (args.length === 0 || args[0].charAt(0) !== '!') return;
+    if (args[0].charAt(0) !== '!') return;
     // Remove ! from command
     const command = args.shift().substr(1).toLowerCase();
     // If in list, continue to command
