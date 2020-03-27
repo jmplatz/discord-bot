@@ -4,6 +4,7 @@ const commands = new Map([
   ['!ping', 'icsBot will reply back with pong.'],
   ['!8ball', '!8ball < insert question > --> icsBot will respond back with an answer.'],
   ['!getgif', 'icsBot will respond back with a random gif!'],
+  ['!upcomingduedates', 'Prints out the next 5 assignments due.']
 ]);
 
 // Returns command list
