@@ -12,7 +12,7 @@ module.exports = async msg => {
     maxResults: 5,
     singleEvents: true,
     orderBy: 'startTime',
-    }, (err, res) => {
+    }, async (err, res) => {
 
     if (err) return console.log('The API returned an error: ' + err);
     const events = res.data.items;
