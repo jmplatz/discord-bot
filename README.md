@@ -18,3 +18,4 @@ discord-bot
 - [x] Build an "8 ball" command
 - [x] Refactor and create a command handler
 - [x] Build a "command list" command
+- [x] Build a "get gif" command
