@@ -19,7 +19,7 @@ module.exports = async (msg) => {
       const events = res.data.items;
 
       if (events.length) {
-        response += ('Upcoming 5 events: \n');
+        response += ('Upcoming 5 Assignments: \n');
         events.map((event, i) => {
           const start = event.start.dateTime.substring(0, 10);
           // console.log(`${start} - ${event.summary}`);
