@@ -3,6 +3,7 @@
 const commands = new Map([
   ['!ping', 'icsBot will reply back with pong.'],
   ['!8ball', '!8ball < insert question > --> icsBot will respond back with an answer.'],
+  ['!getgif', 'icsBot will respond back with a random gif!'],
 ]);
 
 // Returns command list
@@ -15,4 +16,5 @@ module.exports = async (msg) => {
   });
 
   await msg.channel.send(`Command List:\n\n${commandList}`);
+  console.log('commandList was sent!');
 };
