@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 const Discord = require('discord.js');
 const commandHandler = require('./commands');

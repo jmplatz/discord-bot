@@ -1,11 +1,13 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 require('dotenv').config();
 const fetch = require('node-fetch');
 
 const giphyID = process.env.GIPHY_ID;
+const channelID = process.env.GENERAL_CHAT_ID;
 
 module.exports = async (msg) => {
+  if (msg.channel.id === channelID) return;
+
   const NUM_TRENDING = 25;
   const rand = Math.floor(Math.random() * NUM_TRENDING);
 

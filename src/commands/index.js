@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 require('dotenv').config();
 
@@ -7,8 +6,9 @@ const pingCommand = require('./ping');
 const eightBallCommand = require('./8ball');
 const gifCommand = require('./getgif');
 const listAssignmentsCommand = require('./upcomingAssignments');
+const uptimeCommand = require('./uptime.js');
 
-const guildID = process.env.GUILD_ID;
+const guildID = process.env.GENERAL_CHAT_ID;
 
 // Command List Object
 const commands = {
@@ -16,7 +16,8 @@ const commands = {
   '8ball': eightBallCommand,
   commandlist: listCommand,
   getgif: gifCommand,
-  upcomingduedates: listAssignmentsCommand
+  upcomingduedates: listAssignmentsCommand,
+  uptime: uptimeCommand,
 };
 
 module.exports = async (msg) => {
