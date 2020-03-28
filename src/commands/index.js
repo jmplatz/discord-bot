@@ -8,7 +8,7 @@ const gifCommand = require('./getgif');
 const listAssignmentsCommand = require('./upcomingAssignments');
 const uptimeCommand = require('./uptime.js');
 
-const guildID = process.env.GENERAL_CHAT_ID;
+const guildID = process.env.GUILD_ID;
 
 // Command List Object
 const commands = {
