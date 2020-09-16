@@ -23,7 +23,7 @@ module.exports = async (msg) => {
         events.map((event, i) => {
           const start = event.start.dateTime.substring(0, 10);
           // console.log(`${start} - ${event.summary}`);
-          response += `${start} - ${event.summary}\n`;
+          response += `**${start}:** ${event.summary}\n`;
         });
         await msg.channel.send(response);
       } else {
