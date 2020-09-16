@@ -10,7 +10,7 @@ module.exports = async (msg) => {
     {
       calendarId: '467isok03ftm8kq343is1b4jfg@group.calendar.google.com',
       timeMin: new Date().toISOString(),
-      maxResults: 5,
+      maxResults: 8,
       singleEvents: true,
       orderBy: 'startTime',
     },
@@ -19,7 +19,7 @@ module.exports = async (msg) => {
       const events = res.data.items;
 
       if (events.length) {
-        response += ('Upcoming 5 Assignments: \n');
+        response += ('Upcoming 8 Assignments: \n');
         events.map((event, i) => {
           const start = event.start.dateTime.substring(0, 10);
           // console.log(`${start} - ${event.summary}`);
