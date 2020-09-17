@@ -7,6 +7,7 @@ const eightBallCommand = require('./8ball');
 const gifCommand = require('./getgif');
 const listAssignmentsCommand = require('./upcomingAssignments');
 const uptimeCommand = require('./uptime.js');
+const sendCommand = require('./send.js');
 
 const guildID = process.env.GUILD_ID;
 
@@ -18,6 +19,7 @@ const commands = {
   getgif: gifCommand,
   upcomingduedates: listAssignmentsCommand,
   uptime: uptimeCommand,
+  send: sendCommand,
 };
 
 module.exports = async (msg) => {
