@@ -14,6 +14,13 @@ module.exports = async (msg, args) => {
     return;
   }
 
+  var mess = "";
+
+  for (var i = 1; i < args.length; i++) {
+    mess += args[i].ToString;
+    mess += " ";
+  }
+
   // stack overflow stuff
-    await indexData.client.channels.cache.get(args[0].toString()).send(args[1].toString());
+    await indexData.client.channels.cache.get(args[0].toString()).send(mess);
 };
