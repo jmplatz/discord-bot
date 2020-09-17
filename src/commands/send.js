@@ -8,7 +8,7 @@ module.exports = async (msg, args) => {
   if (!args.length || msg.channel.id === channelID) return;
 
 
-  if (!message.member.roles.cache.some((role) => role.name === 'Server Manager')) {
+  if (!msg.member.roles.cache.some((role) => role.name === 'Server Manager')) {
     await msg.channel.send(`${msg.author} ${'You do not have permission to to use this command!'}`);
     return;
   }
