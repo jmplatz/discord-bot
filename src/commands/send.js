@@ -17,7 +17,7 @@ module.exports = async (msg, args) => {
   var mess = "";
 
   for (var i = 1; i < args.length; i++) {
-    mess += args[i].ToString();
+    mess += args[i];
     mess += " ";
   }
 
