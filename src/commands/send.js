@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 require('dotenv').config();
+const indexData = require('../index');
 
 const channelID = process.env.GENERAL_CHAT_ID; // Prevent use in gen chat
 
@@ -14,5 +15,5 @@ module.exports = async (msg, args) => {
   }
 
   // stack overflow stuff
-    await client.channels.cache.get(args[0].toString()).send(args[1].toString());
+    await indexData.client.channels.cache.get(args[0].toString()).send(args[1].toString());
 };
