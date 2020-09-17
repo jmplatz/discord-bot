@@ -20,3 +20,5 @@ process.on('unhandledRejection', (error) => {
   console.log('unhandledRejection:', error.message);
   console.error(error);
 });
+
+exports.client = client;
