@@ -5,7 +5,7 @@ module.exports = async (msg) => {
   const GOOGLE_API = process.env.GOOGLE_API_KEY;
   let response = '';
   let endDate = new Date();
-  date.setDate(date.getDate() + 7);
+  endDate.setDate(endDate.getDate() + 7);
   endDate = endDate.toISOString();
   const calendar = google.calendar({ version: 'v3', auth: GOOGLE_API });
   calendar.events.list(
