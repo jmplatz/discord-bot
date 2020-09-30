@@ -1,6 +1,22 @@
 const { google } = require('googleapis');
 require('dotenv').config();
 
+function getWeekDay(date){
+  let weekdays = new Array(
+      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+  );
+  let day = date.getDay();
+  return weekdays[day];
+}
+
+function getMonthTextual(date){
+  let months = new Array(
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  );
+  let month = date.getMonth();
+  return months[month];
+}
+
 module.exports = async (msg) => {
   const GOOGLE_API = process.env.GOOGLE_API_KEY;
   let response = '';
@@ -22,10 +38,22 @@ module.exports = async (msg) => {
 
       if (events.length) {
         response += ('Upcoming 7 days of Assignments: \n');
+        let currOutput = ""
         events.map((event, i) => {
           const start = event.start.dateTime.substring(0, 10);
+          const year = start.substring(0, 4);
+          const month = start.substring(5, 7);
+          const day = start.substring(8, 10);
+          let date = new Date(year, month, day);
+          const weekday = getWeekday(date);
+          const month = getMonthTextual(date);
+          
+          if(currOutput != weekday + month + day){
+            response += ('**Due ' + weekday + " " + month + " " + day + ":**\n")
+            currOutput = (weekday + month + day);
+          }
           // console.log(`${start} - ${event.summary}`);
-          response += `**${start}:** \`${event.summary}\`\n`;
+          response += ` \`${event.summary}\`\n`;
         });
         await msg.channel.send(response);
       } else {
