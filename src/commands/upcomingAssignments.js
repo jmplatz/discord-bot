@@ -46,11 +46,11 @@ module.exports = async (msg) => {
           const day = start.substring(8, 10);
           let date = new Date(year, month, day);
           const weekday = getWeekday(date);
-          const month = getMonthTextual(date);
+          const monthtext = getMonthTextual(date);
           
-          if(currOutput != weekday + month + day){
-            response += ('**Due ' + weekday + " " + month + " " + day + ":**\n")
-            currOutput = (weekday + month + day);
+          if(currOutput != weekday + monthtext + day){
+            response += ('**Due ' + weekday + " " + monthtext + " " + day + ":**\n")
+            currOutput = (weekday + monthtext + day);
           }
           // console.log(`${start} - ${event.summary}`);
           response += ` \`${event.summary}\`\n`;
