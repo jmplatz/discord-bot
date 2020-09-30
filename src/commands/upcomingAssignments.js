@@ -45,7 +45,7 @@ module.exports = async (msg) => {
           const month = start.substring(5, 7);
           const day = start.substring(8, 10);
           let date = new Date(year, month, day);
-          const weekday = getWeekday(date);
+          const weekday = getWeekDay(date);
           const monthtext = getMonthTextual(date);
           
           if(currOutput != weekday + monthtext + day){
