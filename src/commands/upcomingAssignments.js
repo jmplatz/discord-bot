@@ -6,7 +6,7 @@ function getWeekDay(date){
       "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
   );
   let day = date.getDay();
-  return weekdays[day - 1];
+  return weekdays[day];
 }
 
 function getMonthTextual(date){
@@ -14,7 +14,7 @@ function getMonthTextual(date){
       "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   );
   let month = date.getMonth();
-  return months[month - 1];
+  return months[month];
 }
 
 module.exports = async (msg) => {
@@ -44,7 +44,7 @@ module.exports = async (msg) => {
           const year = start.substring(0, 4);
           const month = start.substring(5, 7);
           const day = start.substring(8, 10);
-          let date = new Date(year, month, day);
+          let date = new Date(year, month - 1, day);
           const weekday = getWeekDay(date);
           const monthtext = getMonthTextual(date);
           
