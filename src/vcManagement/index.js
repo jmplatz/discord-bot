@@ -11,9 +11,23 @@ module.exports = async (oldMember, newMember) => {
     console.log(oldMember.channelID);
     console.log(newMember.channelID);
 
-    // Sometimes it's null, sometimes it's undefined... Why!!!!!!??????
     if ((oldMember.channelID === null) && (newMember.channelID !== null)) {
-      console.log('Joined a Channel');
+      switch (newMember.channelID) {
+        case process.env.VC1ID:
+          console.log('Joined VC1');
+          break;
+        case process.env.VC2ID:
+          console.log('Joined VC2');
+          break;
+        case process.env.VC3ID:
+          console.log('Joined VC3');
+          break;
+        case process.env.VC4ID:
+          console.log('Joined VC4');
+          break;
+        default:
+          break;
+      }
     } else if ((oldMember.channelID !== null) && (newMember.channelID === null)) {
       console.log('Left a Channel');
     } else if ((oldMember.channelID !== null) && (newMember.channelID !== null)) {
