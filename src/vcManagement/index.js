@@ -8,6 +8,8 @@ module.exports = async (oldMember, newMember) => {
     // console.log(oldMember);
     // console.log('--------------------------------');
     // console.log(newMember);
+    console.log(oldMember.channelID);
+    console.log(newMember.channelID);
 
     // Sometimes it's null, sometimes it's undefined... Why!!!!!!??????
     if ((oldMember.channelID === undefined) && (newMember.channelID !== undefined)) {
