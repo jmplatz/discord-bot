@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const Discord = require('discord.js');
 const commandHandler = require('./commands');
-const vsHandler = require('./vcManagement')
+const vcHandler = require('./vcManagement')
 // Create new instance of Client
 const client = new Discord.Client();
 
@@ -14,7 +14,7 @@ client.once('ready', () => {
 });
 
 client.on('message', commandHandler);
-client.on('voiceStateUpdate', vsHandler)
+client.on('voiceStateUpdate', vcHandler)
 
 client.login(BOT_TOKEN);
 
