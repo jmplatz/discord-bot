@@ -8,23 +8,23 @@ module.exports = async (oldMember, newMember) => {
       
       switch (newMember.voiceChannelID) {
         case process.env.VC1ID:
-          let role = message.guild.roles.cache.find(r => r.name === "vc-1");
-          newUserChannel.member.roles.add(role).catch(console.error);
+          let rolevc1 = message.guild.roles.cache.find(r => r.name === "vc-1");
+          newUserChannel.member.roles.add(rolevc1).catch(console.error);
 
           break;
         case process.env.VC2ID:
-          let role = message.guild.roles.cache.find(r => r.name === "vc-2");
-          newUserChannel.member.roles.add(role).catch(console.error);
+          let rolevc2 = message.guild.roles.cache.find(r => r.name === "vc-2");
+          newUserChannel.member.roles.add(rolevc2).catch(console.error);
 
           break;
         case process.env.VC3ID:
-          let role = message.guild.roles.cache.find(r => r.name === "vc-3");
-          newUserChannel.member.roles.add(role).catch(console.error);
+          let rolevc3 = message.guild.roles.cache.find(r => r.name === "vc-3");
+          newUserChannel.member.roles.add(rolevc3).catch(console.error);
 
           break;
         case process.env.VC4ID:
-          let role = message.guild.roles.cache.find(r => r.name === "vc-4");
-          newUserChannel.member.roles.add(role).catch(console.error);
+          let rolevc4 = message.guild.roles.cache.find(r => r.name === "vc-4");
+          newUserChannel.member.roles.add(rolevc4).catch(console.error);
 
           break;
 
