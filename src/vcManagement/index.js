@@ -10,11 +10,11 @@ module.exports = async (oldMember, newMember) => {
     // console.log(newMember);
 
     // Sometimes it's null, sometimes it's undefined... Why!!!!!!??????
-    if ((oldMember.voice.channelID === undefined || oldMember.voice.channelID === null) && (newMember.channelID !== undefined || newMember.voice.channelID !== null)) {
+    if ((oldMember.voice === undefined) && (newMember.voice !== undefined)) {
       console.log('Joined a Channel');
-    } else if ((oldMember.voice.channelID !== undefined || oldMember.voice.channelID !== null) && (newMember.channelID === null || newMember.voice.channelID === undefined)) {
+    } else if ((oldMember.voice !== undefined) && (newMember.voice === undefined)) {
       console.log('Left a Channel');
-    } else if ((oldMember.voice.channelID !== undefined || oldMember.channelID !== null) && (newMember.voice.channelID !== undefined || newMember.voice.channelID !== null)) {
+    } else if ((oldMember.voice !== undefined) && (newMember.voice !== undefined)) {
       console.log('Switched Channel');
     }
   }
