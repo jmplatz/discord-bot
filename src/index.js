@@ -24,3 +24,4 @@ process.on('unhandledRejection', (error) => {
 });
 
 exports.client = client;
+exports.discord = Discord;
