@@ -46,10 +46,11 @@ module.exports = async (msg, args) => {
     async (err, event) => {
       if (err) {
         await msg.channel.send("Something Went Wrong.");
+        console.log(err);
         return;
       }
       await msg.channel.send("Event created: " + event.htmlLink);
-      console.log("Event created: %s", event.htmlLink);
+      // console.log("Event created: %s", event.htmlLink);
     }
   );
 };
