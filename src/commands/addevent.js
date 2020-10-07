@@ -43,7 +43,7 @@ module.exports = async (msg, args) => {
       calendarId: "467isok03ftm8kq343is1b4jfg@group.calendar.google.com",
       resource: event,
     },
-    function (err, event) {
+    async (err, event) => {
       if (err) {
         await msg.channel.send("Something Went Wrong.");
         return;
