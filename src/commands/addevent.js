@@ -4,7 +4,7 @@ require("dotenv").config();
 module.exports = async (msg, args) => {
   // Make sure we have enough arguments.
   if (args.length < 3) {
-    await msg.channel.send("<!addEvent> <yyyy-mm-dd> <event title>");
+    await msg.channel.send("<!addDueDate> <yyyy-mm-dd> <event title>");
     return;
   }
 
@@ -22,7 +22,7 @@ module.exports = async (msg, args) => {
 
 
 
-  const GOOGLE_API = process.env.GOOGLE_API_KEY;
+  const GOOGLE_API = process.env.GOOGLE_SERVICE_ACCOUNT;
 
   const calendar = google.calendar({ version: "v3", auth: GOOGLE_API });
   var event = {
