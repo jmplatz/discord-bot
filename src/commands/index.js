@@ -8,6 +8,7 @@ const gifCommand = require('./getgif');
 const listAssignmentsCommand = require('./upcomingAssignments');
 const uptimeCommand = require('./uptime.js');
 const sendCommand = require('./send.js');
+const addevent = require('./addevent.js');
 
 const guildID = process.env.GUILD_ID;
 
@@ -18,6 +19,7 @@ const commands = {
   commandlist: listCommand,
   getgif: gifCommand,
   upcomingduedates: listAssignmentsCommand,
+  addduedate: addevent,
   uptime: uptimeCommand,
   send: sendCommand,
 };
