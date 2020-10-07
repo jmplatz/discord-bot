@@ -24,9 +24,9 @@
     "countdown": "^2.6.0",
     "discord.js": "^12.0.2",
     "dotenv": "^8.2.0",
+    "gtoken": "^5.0.3",
     "googleapis": "^48.0.0",
-    "node-fetch": "^2.6.0",
-    "gtoken": "^5.0.3"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
