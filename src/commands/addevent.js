@@ -19,38 +19,54 @@ module.exports = async (msg, args) => {
   const eventEnd = args[0] + "T09:00:00-07:00";
   
 
+  const GOOGLE_API = process.env.GOOGLE_SERVICE_P_KEY;
 
+  const key = GOOGLE_API;
+  const { GoogleToken } = require('gtoken');
+  const gtoken = new GoogleToken({
+    email: 'discord-bot@ics2019.iam.gserviceaccount.com',
+    scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
+    key: key
+  });
 
-
-  const GOOGLE_API = process.env.GOOGLE_SERVICE_ACCOUNT;
-
-  const calendar = google.calendar({ version: "v3", auth: GOOGLE_API });
-  var event = {
-    summary: eventTitle,
-    description: "This event was added by ICSBot",
-    start: {
-      dateTime: eventDate,
-      timeZone: "America/Vancouver",
-    },
-    end: {
-      dateTime: eventEnd,
-      timeZone: "America/Vancouver",
-    },
-  };
-
-  calendar.events.insert(
-    {
-      calendarId: "467isok03ftm8kq343is1b4jfg@group.calendar.google.com",
-      resource: event,
-    },
-    async (err, event) => {
-      if (err) {
-        await msg.channel.send("Something Went Wrong.");
-        console.log(err);
-        return;
-      }
-      await msg.channel.send("Event created: " + event.htmlLink);
-      // console.log("Event created: %s", event.htmlLink);
+  gtoken.getToken(async (err, token) => {
+    //console.log(err || token);
+    if(err){
+      await msg.channel.send("Something Went Wrong (35).");
+      console.log(err);
+      return;
     }
-  );
+    
+    const calendar = google.calendar({ version: "v3", auth: token});
+
+    var event = {
+      summary: eventTitle,
+      description: "This event was added by ICSBot",
+      start: {
+        dateTime: eventDate,
+        timeZone: "America/Vancouver",
+      },
+      end: {
+        dateTime: eventEnd,
+        timeZone: "America/Vancouver",
+      },
+    };
+  
+    calendar.events.insert(
+      {
+        calendarId: "467isok03ftm8kq343is1b4jfg@group.calendar.google.com",
+        resource: event,
+      },
+      async (err, event) => {
+        if (err) {
+          await msg.channel.send("Something Went Wrong.");
+          console.log(err);
+          return;
+        }
+        await msg.channel.send("Event created: " + event.htmlLink);
+        // console.log("Event created: %s", event.htmlLink);
+      }
+    );
+  });
+  
 };
