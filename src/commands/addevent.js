@@ -17,56 +17,41 @@ module.exports = async (msg, args) => {
 
   const eventDate = args[0] + "T08:00:00-07:00";
   const eventEnd = args[0] + "T09:00:00-07:00";
-  
 
-  const GOOGLE_API = process.env.GOOGLE_SERVICE_P_KEY;
+  const keysEnvVar = process.env.GOOGLE_SERVICE_ACCOUNT;
+  if (!keysEnvVar) {
+    throw new Error('The $CREDS environment variable was not found!');
+  }
+  const keys = JSON.parse(keysEnvVar);
 
-  const key = GOOGLE_API;
-  const { GoogleToken } = require('gtoken');
-  const gtoken = new GoogleToken({
-    email: 'discord-bot@ics2019.iam.gserviceaccount.com',
-    scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
-    key: key
-  });
 
-  gtoken.getToken(async (err, token) => {
-    //console.log(err || token);
-    if(err){
-      await msg.channel.send("Something Went Wrong (35).");
-      console.log(err);
-      return;
-    }
-    
-    const calendar = google.calendar({ version: "v3", auth: token});
+  const calendar = google.calendar({ scopes: ['https://www.googleapis.com/auth/calendar'], version: "v3", auth: google.auth.GoogleAuth.fromJson(keys) });
+  var event = {
+    summary: eventTitle,
+    description: "This event was added by ICSBot",
+    start: {
+      dateTime: eventDate,
+      timeZone: "America/Vancouver",
+    },
+    end: {
+      dateTime: eventEnd,
+      timeZone: "America/Vancouver",
+    },
+  };
 
-    var event = {
-      summary: eventTitle,
-      description: "This event was added by ICSBot",
-      start: {
-        dateTime: eventDate,
-        timeZone: "America/Vancouver",
-      },
-      end: {
-        dateTime: eventEnd,
-        timeZone: "America/Vancouver",
-      },
-    };
-  
-    calendar.events.insert(
-      {
-        calendarId: "467isok03ftm8kq343is1b4jfg@group.calendar.google.com",
-        resource: event,
-      },
-      async (err, event) => {
-        if (err) {
-          await msg.channel.send("Something Went Wrong.");
-          console.log(err);
-          return;
-        }
-        await msg.channel.send("Event created: " + event.htmlLink);
-        // console.log("Event created: %s", event.htmlLink);
+  calendar.events.insert(
+    {
+      calendarId: "467isok03ftm8kq343is1b4jfg@group.calendar.google.com",
+      resource: event,
+    },
+    async (err, event) => {
+      if (err) {
+        await msg.channel.send("Something Went Wrong.");
+        console.log(err);
+        return;
       }
-    );
-  });
-  
+      await msg.channel.send("Event created: " + event.htmlLink);
+      // console.log("Event created: %s", event.htmlLink);
+    }
+  );
 };
