@@ -15,8 +15,8 @@ module.exports = async (msg, args) => {
     eventTitle += " ";
   }
 
-  const eventDate = args[0] + "T08:00:00-07:00";
-  const eventEnd = args[0] + "T09:00:00-07:00";
+  const eventDate = args[0] + "T09:00:00-07:00";
+  const eventEnd = args[0] + "T10:00:00-07:00";
 
   const keysEnvVar = process.env.GOOGLE_SERVICE_ACCOUNT;
   if (!keysEnvVar) {
