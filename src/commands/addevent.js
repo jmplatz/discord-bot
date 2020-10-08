@@ -23,9 +23,13 @@ module.exports = async (msg, args) => {
     throw new Error('The $CREDS environment variable was not found!');
   }
   const keys = JSON.parse(keysEnvVar);
+  
 
+  const auth = new google.auth.GoogleAuth({
+    scopes: ['https://www.googleapis.com/auth/calendar'],
+  });
 
-  const calendar = google.calendar({ scopes: ['https://www.googleapis.com/auth/calendar'], version: "v3", auth: google.auth.GoogleAuth.fromJson(keys) });
+  const calendar = google.calendar({ version: "v3", auth: auth.fromJSON(keys) });
   var event = {
     summary: eventTitle,
     description: "This event was added by ICSBot",
