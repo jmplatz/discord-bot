@@ -54,7 +54,7 @@ module.exports = async (msg, args) => {
         console.log(err);
         return;
       }
-      await msg.channel.send("Event created: " + event);
+      await msg.react('📅️');
       // console.log("Event created: %s", event.htmlLink);
     }
   );
