@@ -54,7 +54,7 @@ module.exports = async (msg, args) => {
         console.log(err);
         return;
       }
-      await msg.react('📅️');
+      await msg.react('📆');
       // console.log("Event created: %s", event.htmlLink);
     }
   );
