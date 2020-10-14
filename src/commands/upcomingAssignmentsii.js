@@ -1,7 +1,7 @@
 const { google } = require('googleapis');
 require('dotenv').config();
 
-const client = require('../index')
+const Discord = require('../index')
 
 function getWeekDay(date){
   let weekdays = new Array(
@@ -40,7 +40,7 @@ module.exports = async (msg) => {
 
       if (events.length) {
         
-        const foundEmbed = new client.MessageEmbed();
+        const foundEmbed = new Discord.MessageEmbed();
         foundEmbed.setTitle('Assignments due within the next 7 days:');
         foundEmbed.setDescription('No assignments where found within the next week.');
         foundEmbed.setTimestamp()
@@ -50,7 +50,7 @@ module.exports = async (msg) => {
 
 
       } else {
-        const noneFoundEmbed = new client.MessageEmbed();
+        const noneFoundEmbed = new Discord.MessageEmbed();
         noneFoundEmbed.setTitle('Upcoming Due Dates');
         noneFoundEmbed.setDescription('No assignments where found within the next week.');
         noneFoundEmbed.setTimestamp()
