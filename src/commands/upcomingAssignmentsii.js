@@ -40,21 +40,19 @@ module.exports = async (msg) => {
 
       if (events.length) {
         
-        const foundEmbed = new Discord.MessageEmbed();
-        foundEmbed.setTitle('Assignments due within the next 7 days:');
-        foundEmbed.setDescription('No assignments where found within the next week.');
-        foundEmbed.setTimestamp()
-	    foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
+        const foundEmbed = new Discord.MessageEmbed().setTitle('Assignments due within the next 7 days:')
+        .setDescription('No assignments where found within the next week.')
+        .setTimestamp()
+	    .setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
         await msg.channel.send(foundEmbed);
 
 
 
       } else {
-        const noneFoundEmbed = new Discord.MessageEmbed();
-        noneFoundEmbed.setTitle('Upcoming Due Dates');
-        noneFoundEmbed.setDescription('No assignments where found within the next week.');
-        noneFoundEmbed.setTimestamp()
-	    noneFoundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Event Title');
+        const noneFoundEmbed = new Discord.MessageEmbed().setTitle('Upcoming Due Dates')
+        .setDescription('No assignments where found within the next week.')
+        .setTimestamp()
+	    .setFooter('Something Missing? !addDueDate 2020-12-31 Event Title');
         await msg.channel.send(noneFoundEmbed);
       }
     },
