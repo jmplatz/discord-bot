@@ -42,11 +42,35 @@ module.exports = async (msg) => {
         
         const foundEmbed = new indexData.discord.MessageEmbed();
         foundEmbed.setTitle('Assignments due within the next 7 days:');
-        foundEmbed.setDescription('No assignments where found within the next week.');
+        
+
+        let currOutput = ""
+        events.map((event, i) => {
+          const start = event.start.dateTime.substring(0, 10);
+          const year = start.substring(0, 4);
+          const month = start.substring(5, 7);
+          const day = start.substring(8, 10);
+          let date = new Date(year, month - 1, day);
+          const weekday = getWeekDay(date);
+          const monthtext = getMonthTextual(date);
+          
+          if(currOutput != weekday + monthtext + day){
+              if(i != 0){
+                  foundEmbed.addField(''.join(title), ''.join(response), true)
+              }
+            
+            title = ('**Due ' + weekday + " " + monthtext + " " + day + ":**\n")
+            response = "";
+            currOutput = (weekday + monthtext + day);
+          }
+          // console.log(`${start} - ${event.summary}`);
+          response += ` - ${event.summary} \n`;
+        });
+
+
         foundEmbed.setTimestamp()
 	    foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
         await msg.channel.send(foundEmbed);
-
 
 
       } else {
