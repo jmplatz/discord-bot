@@ -56,7 +56,7 @@ module.exports = async (msg) => {
           
           if(currOutput != weekday + monthtext + day){
               if(i != 0){
-                  foundEmbed.addField(str(title), str(response), true)
+                  foundEmbed.addField(title, response, true)
               }
             
             title = ('**Due ' + weekday + " " + monthtext + " " + day + ":**\n")
