@@ -3,7 +3,7 @@ require("dotenv").config();
 
 module.exports = async (msg, args) => {
   // Make sure we have enough arguments.
-  if (args.length < 3) {
+  if (args.length < 2) {
     await msg.channel.send("<!addDueDate> <yyyy-mm-dd> <event title>");
     return;
   }

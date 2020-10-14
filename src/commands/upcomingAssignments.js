@@ -1,6 +1,8 @@
 const { google } = require('googleapis');
 require('dotenv').config();
 
+const indexData = require('../index')
+
 function getWeekDay(date){
   let weekdays = new Array(
       "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -37,7 +39,11 @@ module.exports = async (msg) => {
       const events = res.data.items;
 
       if (events.length) {
-        response += ('Upcoming 7 days of Assignments: \n');
+        
+        const foundEmbed = new indexData.discord.MessageEmbed();
+        foundEmbed.setTitle('Assignments due within the next 7 days:');
+        
+
         let currOutput = ""
         events.map((event, i) => {
           const start = event.start.dateTime.substring(0, 10);
@@ -49,16 +55,31 @@ module.exports = async (msg) => {
           const monthtext = getMonthTextual(date);
           
           if(currOutput != weekday + monthtext + day){
-            response += ('**Due ' + weekday + " " + monthtext + " " + day + ":**\n")
+              if(i != 0){
+                  foundEmbed.addField(title, response, false)
+              }
+            
+            title = ('**Due ' + weekday + " " + monthtext + " " + day + ":**\n")
+            response = "";
             currOutput = (weekday + monthtext + day);
           }
           // console.log(`${start} - ${event.summary}`);
-          response += ` \`${event.summary}\`\n`;
+          response += ` - \`${event.summary}\` \n`;
         });
-        await msg.channel.send(response);
+        foundEmbed.addField(title, response, false)
+
+        foundEmbed.setTimestamp()
+	    foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
+        await msg.channel.send(foundEmbed);
+
+
       } else {
-        response += ('No events in the next 7 days found.');
-        await msg.channel.send(response);
+        const noneFoundEmbed = new indexData.discord.MessageEmbed();
+        noneFoundEmbed.setTitle('Upcoming Due Dates');
+        noneFoundEmbed.setDescription('No assignments where found within the next week.');
+        noneFoundEmbed.setTimestamp()
+	    noneFoundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Event Title');
+        await msg.channel.send(noneFoundEmbed);
       }
     },
   );
