@@ -6,6 +6,7 @@ const pingCommand = require('./ping');
 const eightBallCommand = require('./8ball');
 const gifCommand = require('./getgif');
 const listAssignmentsCommand = require('./upcomingAssignments');
+const listAssignmentsCommandii = require('./upcomingAssignmentsii');
 const uptimeCommand = require('./uptime.js');
 const sendCommand = require('./send.js');
 const addevent = require('./addevent.js');
@@ -19,6 +20,7 @@ const commands = {
   commandlist: listCommand,
   getgif: gifCommand,
   upcomingduedates: listAssignmentsCommand,
+  upcomingduedatesii: listAssignmentsCommandii,
   addduedate: addevent,
   uptime: uptimeCommand,
   send: sendCommand,
