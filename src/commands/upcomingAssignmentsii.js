@@ -64,7 +64,7 @@ module.exports = async (msg) => {
             currOutput = (weekday + monthtext + day);
           }
           // console.log(`${start} - ${event.summary}`);
-          response += ` - ${event.summary} \n`;
+          response += ` - \`${event.summary}\` \n`;
         });
 
 
