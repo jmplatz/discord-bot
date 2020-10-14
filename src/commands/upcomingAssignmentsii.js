@@ -66,7 +66,7 @@ module.exports = async (msg) => {
           // console.log(`${start} - ${event.summary}`);
           response += ` - \`${event.summary}\` \n`;
         });
-
+        foundEmbed.addField(title, response, false)
 
         foundEmbed.setTimestamp()
 	    foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
