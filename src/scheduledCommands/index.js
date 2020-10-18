@@ -89,12 +89,12 @@ module.exports = async () => {
         }
 
         const foundEmbed = new indexData.discord.MessageEmbed();
-        foundEmbed.setTitle('Good Morning! ');
+        foundEmbed.setTitle('Good Morning! @Dima ');
         foundEmbed.addField("Due Today: ", dayOneOutput , false);
         foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
         foundEmbed.setTimestamp();
         foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
-        await indexData.client.channels.cache.get("753718038280536064").send("@Dima" + foundEmbed);
+        await indexData.client.channels.cache.get("753718038280536064").send(foundEmbed);
 
         } else {
           // No Events
