@@ -31,7 +31,7 @@ exports.discord = Discord;
 let rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
 rule.hour = 21;
-rule.minute = 43;
+rule.minute = 53;
 rule.tz = 'America/Vancouver';
 
 // Runs at 0800 every day

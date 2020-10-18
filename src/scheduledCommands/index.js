@@ -16,7 +16,7 @@ module.exports = async () => {
   // EDIT: I ended Up having to do the conversion. This took much more research than I would have liked
   const startDate = new Date();
   startDate.setHours(startDate.getHours() - 8); // PST Conversion
-  startDate.setHours(0, 0, 0, 0);
+  startDate.setHours(7, 0, 0, 0);
   const todays_day = startDate.getDate();
   const todays_month = startDate.getMonth();
   const todays_year = startDate.getFullYear();
@@ -25,7 +25,7 @@ module.exports = async () => {
   const endDate = new Date();
   endDate.setHours(endDate.getHours() - 8); // PST Conversion
   endDate.setDate(endDate.getDate() + 1);
-  endDate.setHours(12, 59, 59, 0);
+  endDate.setHours(19, 59, 59, 0);
   const startDateString = startDate.toISOString();
   const endDateString = endDate.toISOString();
   console.log("[DEBUG]: " + startDateString + " " + endDateString);
