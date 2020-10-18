@@ -17,12 +17,6 @@ module.exports = async () => {
   const todays_month = date.getMonth() + 1;
   const todays_year = date.getFullYear();
 
-  let tomorrowDate = new Date();
-  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-  const tomorrow_day = tomorrowDate.getDate();
-  const tomorrow_month = tomorrowDate.getMonth() + 1;
-  const tomorrow_year = tomorrowDate.getFullYear();
-
   let dayAfterTomorrow = new Date();
   dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
   const dayAfterTomorrow_day = dayAfterTomorrow.getDate();
@@ -30,13 +24,9 @@ module.exports = async () => {
   const dayAfterTomorrow_year = dayAfterTomorrow.getFullYear();
   //2020-10-20T07:00:00.000Z
   const dayOneStart = (todays_year + "-" + todays_month + "-" + todays_day + "T07:00:00.000Z");
-  const dayOneEnd = (tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_day + "T06:00:00.000Z");
-  
-  const dayTwoStart = (tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_day + "T07:00:00.000Z");
   const dayTwoEnd = (dayAfterTomorrow_year + "-" + dayAfterTomorrow_month + "-" + dayAfterTomorrow_day + "T06:00:00.000Z");
 
-  console.log("[DEBUG]: " + dayOneStart + " " + dayTwoStart);
-  console.log("[DEBUG]: " + dayOneEnd + " " + dayTwoEnd);
+  console.log("[DEBUG]: " + dayOneStart + " " + dayTwoEnd);
 
   // Get stuff from today
   let dayOneOutput = "";
@@ -49,7 +39,7 @@ module.exports = async () => {
     {
       calendarId: '467isok03ftm8kq343is1b4jfg@group.calendar.google.com',
       timeMin: dayOneStart,
-      timeMax: dayOneEnd,
+      timeMax: dayTwoEnd,
       singleEvents: true,
       orderBy: 'startTime',
     },
@@ -58,61 +48,54 @@ module.exports = async () => {
       const events = res.data.items;
       if (events.length) {
         // Yes Events
-        isDayOne = true;
         events.map((event, i) => {
+
+          const start = event.start.dateTime.substring(0, 10);
+          const year = start.substring(0, 4);
+          const month = start.substring(5, 7);
+          const day = start.substring(8, 10);
+
+          if(start == (todays_year + "-" + todays_month + "-" + todays_day)){
+            isDayOne = true;
+            dayOneOutput += ` - \`${event.summary}\` \n`;
+          }else{
+            isDayTwo = true;
+            dayTwoOutput += ` - \`${event.summary}\` \n`;
+          }
           console.log(event.summary);
-          dayOneOutput += ` - \`${event.summary}\` \n`;
         });
 
-      } else {
-        // No Events
-        dayOneOutput = "Nothing Due Today!";
-      }
+        if (!isDayTwo && !isDayOne){
+          // There is nothing due today or tomorrow, return now
+          return;
+        }
+
+        console.log("[DEBUG]: " + isDayTwo + " " + isDayOne);
+        console.log("[DEBUG]: " + dayOneOutput + " " + dayTwoOutput);
+
+
+        if (!isDayOne){
+          dayOneOutput = "Nothing Due Today!";
+        }
+        if (!isDayTwo){
+          dayTwoOutput = "Nothing Due Tomorrow!";
+        }
+
+        const foundEmbed = new indexData.discord.MessageEmbed();
+        foundEmbed.setTitle('Good Morning! Here\'s what\'s due Today and Tomorrow: ');
+        foundEmbed.addField("Due Today: ", dayOneOutput , false);
+        foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
+        foundEmbed.setTimestamp();
+        foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
+        await indexData.client.channels.cache.get("753718038280536064").send(foundEmbed);
+
+        } else {
+          // No Events
+        }
 
     });
 
-    calendar.events.list(
-      {
-        calendarId: '467isok03ftm8kq343is1b4jfg@group.calendar.google.com',
-        timeMin: dayTwoStart,
-        timeMax: dayTwoEnd,
-        singleEvents: true,
-        orderBy: 'startTime',
-      },
-      async (err, res) => {
-        if (err) return console.log(`The API returned an error: ${err}`);
-        const events = res.data.items;
-        if (events.length) {
-          // Yes Events
-          isDayTwo = true;
-          events.map((event, i) => {
-            console.log(event.summary);
-            dayTwoOutput += ` - \`${event.summary}\` \n`;
-          });
-  
-        } else {
-          // No Events
-          dayTwoOutput = "Nothing Due Tomorrow!";
-        }
-  
-      });
-      console.log("[DEBUG]: " + isDayTwo + " " + isDayOne);
-      console.log("[DEBUG]: " + dayOneOutput + " " + dayTwoOutput);
-
-      if (!isDayTwo && !isDayOne){
-        // There is nothing due today or tomorrow, return now
-        return;
-      }
-
-      const foundEmbed = new indexData.discord.MessageEmbed();
-      foundEmbed.setTitle('Good Morning! Here\'s what\'s due Today and Tomorrow: ');
-      foundEmbed.addField("Due Today: ", dayOneOutput , false);
-      foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
-      foundEmbed.setTimestamp();
-      foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
+      
 
 
-
-    // This Sends To Admin-Zone For now, for testing
-    await indexData.client.channels.cache.get("753718038280536064").send(foundEmbed);
 };
