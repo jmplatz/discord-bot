@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const { google } = require('googleapis');
 require('dotenv').config();
 const indexData = require('../index');
 
