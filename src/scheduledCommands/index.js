@@ -34,6 +34,10 @@ module.exports = async () => {
   
   const dayTwoStart = (tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_day + "T07:00:00.000Z");
   const dayTwoEnd = (dayAfterTomorrow_year + "-" + dayAfterTomorrow_month + "-" + dayAfterTomorrow_day + "T06:00:00.000Z");
+
+  console.log("[DEBUG]: " + dayOneStart + " " + dayTwoStart);
+  console.log("[DEBUG]: " + dayOneEnd + " " + dayTwoEnd);
+
   // Get stuff from today
   let dayOneOutput = "";
   let isDayOne = false;
@@ -90,6 +94,8 @@ module.exports = async () => {
         }
   
       });
+      console.log("[DEBUG]: " + isDayTwo + " " + isDayOne);
+      console.log("[DEBUG]: " + dayOneOutput + " " + dayTwoOutput);
 
       if (!isDayTwo && !isDayOne){
         // There is nothing due today or tomorrow, return now
