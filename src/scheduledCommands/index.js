@@ -22,6 +22,14 @@ module.exports = async () => {
   const todays_year = startDate.getFullYear();
 
 
+  if (todays_day < 10){
+    todays_day = "0" + todays_day;
+  }
+  if (todays_month < 10){
+    todays_month = "0" + todays_month;
+  }
+
+
   const endDate = new Date();
   endDate.setHours(endDate.getHours() - 8); // PST Conversion
   endDate.setDate(endDate.getDate() + 1);
@@ -69,7 +77,7 @@ module.exports = async () => {
           return;
         }
 
-        console.log("[DEBUG]: " + isDayTwo + " " + isDayOne);
+        console.log("[DEBUG]: " + isDayOne + " " + isDayTwo);
         console.log("[DEBUG]: " + dayOneOutput + " " + dayTwoOutput);
 
 
