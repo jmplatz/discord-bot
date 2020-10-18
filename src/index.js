@@ -30,8 +30,8 @@ exports.discord = Discord;
 
 let rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
-rule.hour = 22;
-rule.minute = 45;
+rule.hour = 8;
+rule.minute = 0;
 rule.tz = 'America/Vancouver';
 
 // Runs at 0800 every day

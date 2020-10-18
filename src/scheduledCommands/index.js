@@ -36,7 +36,6 @@ module.exports = async () => {
   endDate.setHours(19, 59, 59, 0);
   const startDateString = startDate.toISOString();
   const endDateString = endDate.toISOString();
-  console.log("[DEBUG]: " + startDateString + " " + endDateString);
 
   // Get stuff from today
   let dayOneOutput = "";
@@ -69,17 +68,12 @@ module.exports = async () => {
             isDayTwo = true;
             dayTwoOutput += ` - \`${event.summary}\` \n`;
           }
-          console.log(event.summary);
         });
 
         if (!isDayTwo && !isDayOne){
           // There is nothing due today or tomorrow, return now
           return;
         }
-
-        console.log("[DEBUG]: " + isDayOne + " " + isDayTwo);
-        console.log("[DEBUG]: " + dayOneOutput + " " + dayTwoOutput);
-
 
         if (!isDayOne){
           dayOneOutput = "Nothing Due Today!";
@@ -94,9 +88,8 @@ module.exports = async () => {
         foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
         foundEmbed.setTimestamp();
         foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
-        await indexData.client.channels.cache.get("753718038280536064").send("<@&689970906075758644> ");
-        await indexData.client.channels.cache.get("753718038280536064").send(foundEmbed);
-
+        await indexData.client.channels.cache.get(channelID).send("<@&624388424110964749> "); // Everyone Roll. Guild Dependant
+        await indexData.client.channels.cache.get(channelID).send(foundEmbed);
         } else {
           // No Events
         }
