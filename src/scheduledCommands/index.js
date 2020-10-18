@@ -17,13 +17,13 @@ module.exports = async () => {
   const todays_year = date.getFullYear();
 
   let tomorrowDate = new Date();
-  tomorrowDate = tomorrowDate.setDate((tomorrowDate.getDate()) + 1);
+  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
   const tomorrow_day = tomorrowDate.getDate();
   const tomorrow_month = tomorrowDate.getMonth() + 1;
   const tomorrow_year = tomorrowDate.getFullYear();
 
   let dayAfterTomorrow = new Date();
-  dayAfterTomorrow = dayAfterTomorrow.setDate((dayAfterTomorrow.getDate()) + 1);
+  dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
   const dayAfterTomorrow_day = dayAfterTomorrow.getDate();
   const dayAfterTomorrow_month = dayAfterTomorrow.getMonth() + 1;
   const dayAfterTomorrow_year = dayAfterTomorrow.getFullYear();
