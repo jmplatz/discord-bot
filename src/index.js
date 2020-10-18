@@ -28,6 +28,11 @@ process.on('unhandledRejection', (error) => {
 exports.client = client;
 exports.discord = Discord;
 
+let rule = new schedule.RecurrenceRule();
+rule.dayOfWeek = [0, new schedule.Range(0, 6)];
+rule.hour = 19;
+rule.minute = 30;
+rule.tz = 'America/Vancouver';
 
 // Runs at 0800 every day
-var j = schedule.scheduleJob({hour: 18, minute: 20, dayOfWeek: 0}, scheduledCommands);
+var j = schedule.scheduleJob(rule, scheduledCommands);
