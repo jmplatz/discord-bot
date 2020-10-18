@@ -24,7 +24,7 @@ module.exports = async () => {
   const tomorrow_year = tomorrowDate.getFullYear();
 
   let dayAfterTomorrow = new Date();
-  dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
+  dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
   const dayAfterTomorrow_day = dayAfterTomorrow.getDate();
   const dayAfterTomorrow_month = dayAfterTomorrow.getMonth() + 1;
   const dayAfterTomorrow_year = dayAfterTomorrow.getFullYear();
@@ -42,7 +42,7 @@ module.exports = async () => {
   let dayOneOutput = "";
   let isDayOne = false;
 
-  let dayTwoOutput;
+  let dayTwoOutput = "";
   let isDayTwo = false;
   const calendar = google.calendar({ version: 'v3', auth: GOOGLE_API });
   calendar.events.list(
@@ -60,6 +60,7 @@ module.exports = async () => {
         // Yes Events
         isDayOne = true;
         events.map((event, i) => {
+          console.log(event.summary);
           dayOneOutput += ` - \`${event.summary}\` \n`;
         });
 
@@ -85,6 +86,7 @@ module.exports = async () => {
           // Yes Events
           isDayTwo = true;
           events.map((event, i) => {
+            console.log(event.summary);
             dayTwoOutput += ` - \`${event.summary}\` \n`;
           });
   
