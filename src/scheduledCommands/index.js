@@ -18,7 +18,7 @@ module.exports = async () => {
   startDate.setHours(startDate.getHours() - 8); // PST Conversion
   startDate.setHours(7, 0, 0, 0);
   let todays_day = startDate.getDate();
-  let todays_month = startDate.getMonth();
+  let todays_month = startDate.getMonth() + 1;
   const todays_year = startDate.getFullYear();
 
 
@@ -28,8 +28,6 @@ module.exports = async () => {
   if (todays_month < 10){
     todays_month = "0" + todays_month;
   }
-
-  console.log(todays_month);
 
 
   const endDate = new Date();
