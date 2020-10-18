@@ -94,7 +94,7 @@ module.exports = async () => {
         foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
         foundEmbed.setTimestamp();
         foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
-        await indexData.client.channels.cache.get("753718038280536064").send("<@&627231193271894026> ");
+        await indexData.client.channels.cache.get("753718038280536064").send("<@&689970906075758644> ");
         await indexData.client.channels.cache.get("753718038280536064").send(foundEmbed);
 
         } else {
