@@ -12,21 +12,23 @@ module.exports = async () => {
   // I don't feel like messing around with UTC time zones and other date object fun-ness. 
   // So I'm going to generate the UTC Strings myself, with values I know will work.
   // Feel free to make this less kludgy, I'm just too tight on time to experiment
-  const date = new Date();
-  const todays_day = date.getDate();
-  const todays_month = date.getMonth() + 1;
-  const todays_year = date.getFullYear();
 
-  let dayAfterTomorrow = new Date();
-  dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
-  const dayAfterTomorrow_day = dayAfterTomorrow.getDate();
-  const dayAfterTomorrow_month = dayAfterTomorrow.getMonth() + 1;
-  const dayAfterTomorrow_year = dayAfterTomorrow.getFullYear();
-  //2020-10-20T07:00:00.000Z
-  const dayOneStart = (todays_year + "-" + todays_month + "-" + todays_day + "T07:00:00.000Z");
-  const dayTwoEnd = (dayAfterTomorrow_year + "-" + dayAfterTomorrow_month + "-" + dayAfterTomorrow_day + "T06:00:00.000Z");
+  // EDIT: I ended Up having to do the conversion. This took much more research than I would have liked
+  const startDate = new Date();
+  startDate.setHours(startDate.getHours() - 8); // PST Conversion
+  startDate.setHours(0, 0, 0, 0);
+  const todays_day = startDate.getDate();
+  const todays_month = startDate.getMonth();
+  const todays_year = startDate.getFullYear();
 
-  console.log("[DEBUG]: " + dayOneStart + " " + dayTwoEnd);
+
+  const endDate = new Date();
+  endDate.setHours(endDate.getHours() - 8); // PST Conversion
+  endDate.setDate(endDate.getDate() + 1);
+  endDate.setHours(12, 59, 59, 0);
+  const startDateString = startDate.toISOString();
+  const endDateString = endDate.toISOString();
+  console.log("[DEBUG]: " + startDateString + " " + endDateString);
 
   // Get stuff from today
   let dayOneOutput = "";
@@ -38,8 +40,8 @@ module.exports = async () => {
   calendar.events.list(
     {
       calendarId: '467isok03ftm8kq343is1b4jfg@group.calendar.google.com',
-      timeMin: dayOneStart,
-      timeMax: dayTwoEnd,
+      timeMin: startDateString,
+      timeMax: endDateString,
       singleEvents: true,
       orderBy: 'startTime',
     },
@@ -51,9 +53,6 @@ module.exports = async () => {
         events.map((event, i) => {
 
           const start = event.start.dateTime.substring(0, 10);
-          const year = start.substring(0, 4);
-          const month = start.substring(5, 7);
-          const day = start.substring(8, 10);
 
           if(start == (todays_year + "-" + todays_month + "-" + todays_day)){
             isDayOne = true;
@@ -82,7 +81,7 @@ module.exports = async () => {
         }
 
         const foundEmbed = new indexData.discord.MessageEmbed();
-        foundEmbed.setTitle('Good Morning! Here\'s what\'s due Today and Tomorrow: ');
+        foundEmbed.setTitle('Good Morning! ');
         foundEmbed.addField("Due Today: ", dayOneOutput , false);
         foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
         foundEmbed.setTimestamp();
