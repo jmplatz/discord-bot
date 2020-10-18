@@ -89,7 +89,7 @@ module.exports = async () => {
         }
 
         const foundEmbed = new indexData.discord.MessageEmbed();
-        foundEmbed.setTitle('Good Morning! @Dima ');
+        foundEmbed.setTitle('Good Morning! <@152987947098963977> ');
         foundEmbed.addField("Due Today: ", dayOneOutput , false);
         foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
         foundEmbed.setTimestamp();
