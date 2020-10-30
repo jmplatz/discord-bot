@@ -88,7 +88,6 @@ module.exports = async () => {
         foundEmbed.addField("Due Tomorrow: ", dayTwoOutput , false);
         foundEmbed.setTimestamp();
         foundEmbed.setFooter('Something Missing? !addDueDate 2020-12-31 Assignment Title');
-        await indexData.client.channels.cache.get(channelID).send("<@&624388424110964749> "); // Everyone Roll. Guild Dependant
         await indexData.client.channels.cache.get(channelID).send(foundEmbed);
         } else {
           // No Events
