@@ -22,6 +22,9 @@ function getMonthTextual(date){
 module.exports = async (msg, args) => {
   const GOOGLE_API = process.env.GOOGLE_API_KEY;
   let dayModifier = 7;
+  console.log(args);
+  console.log(args[0]);
+  console.log(args[1]);
   if(args[0] == undefined){
     // Don't need to do anything
   }else if(isNaN(args[1])){
