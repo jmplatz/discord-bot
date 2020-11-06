@@ -22,12 +22,10 @@ function getMonthTextual(date){
 module.exports = async (msg, args) => {
   const GOOGLE_API = process.env.GOOGLE_API_KEY;
   let dayModifier = 7;
-  console.log(args);
   console.log(args[0]);
-  console.log(args[1]);
   if(args[0] == undefined){
     // Don't need to do anything
-  }else if(isNaN(args[1])){
+  }else if(isNaN(args[0])){
     await msg.channel.send("Invalid Date Modifier, Assuming 7 Days.");
   }else if(args[1] < 7){
     await msg.channel.send("Date Modifier must be at least 7 days");
