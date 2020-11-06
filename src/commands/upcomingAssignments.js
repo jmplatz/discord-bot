@@ -19,11 +19,22 @@ function getMonthTextual(date){
   return months[month];
 }
 
-module.exports = async (msg) => {
+module.exports = async (msg, args) => {
   const GOOGLE_API = process.env.GOOGLE_API_KEY;
+  let dayModifier = 7;
+  if(isNaN(args[1])){
+    await msg.channel.send("Invalid Date Modifier, Assuming 7 Days.");
+  }else if(args[1] < 7){
+    await msg.channel.send("Date Modifier must be at least 7 days");
+  }else if(args[1] > 31){
+    await msg.channel.send("Max Date Modifier is 31 Days.");
+    dayModifier = 31;
+  }else{
+    dayModifier = args[1];
+  }
   let response = '';
   let endDate = new Date();
-  endDate.setDate(endDate.getDate() + 7);
+  endDate.setDate(endDate.getDate() + dayModifier);
   endDate = endDate.toISOString();
   const calendar = google.calendar({ version: 'v3', auth: GOOGLE_API });
   calendar.events.list(
@@ -41,7 +52,7 @@ module.exports = async (msg) => {
       if (events.length) {
         
         const foundEmbed = new indexData.discord.MessageEmbed();
-        foundEmbed.setTitle('Assignments due within the next 7 days:');
+        foundEmbed.setTitle('Assignments due within the next ' + dayModifier + ' days:');
         
 
         let currOutput = ""
