@@ -27,17 +27,17 @@ module.exports = async (msg, args) => {
     // Don't need to do anything
   }else if(isNaN(args[0])){
     await msg.channel.send("Invalid Date Modifier, Assuming 7 Days.");
-  }else if(args[1] < 7){
+  }else if(args[0] < 7){
     await msg.channel.send("Date Modifier must be at least 7 days");
-  }else if(args[1] > 31){
+  }else if(args[0] > 31){
     await msg.channel.send("Max Date Modifier is 31 Days.");
     dayModifier = 31;
   }else{
-    dayModifier = args[1];
+    dayModifier = args[0];
   }
   let response = '';
   let endDate = new Date();
-  endDate.setDate(endDate.getDate() + dayModifier);
+  endDate.setDate(endDate.getDate() + parseInt(dayModifier));
   endDate = endDate.toISOString();
   const calendar = google.calendar({ version: 'v3', auth: GOOGLE_API });
   calendar.events.list(
