@@ -76,7 +76,7 @@ module.exports = async (msg, args) => {
             response = "";
             currOutput = (weekday + monthtext + day);
           }
-          // console.log(`${start} - ${event.summary}`);
+          console.log(`${start} - ${event.summary}`);
           response += ` - \`${event.summary}\` \n`;
         });
         foundEmbed.addField(title, response, false)
