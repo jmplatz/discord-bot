@@ -12,6 +12,7 @@ const addevent = require('./addevent.js');
 const uwu = require('./uwu.js');
 
 const guildID = process.env.GUILD_ID;
+const UWU = process.env.UWUID;
 
 // Command List Object
 const commands = {
@@ -38,7 +39,8 @@ module.exports = async (msg) => {
     if (Object.keys(commands).includes(command)) {
       commands[command](msg, args);
     }
-    if(msg.channel.id === 783936497791270972){
+    if(msg.channel.id === UWU){
+      console("Processing UWU Request")
       uwu(msg, args);
     }
   }

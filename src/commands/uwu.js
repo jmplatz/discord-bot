@@ -1,8 +1,10 @@
 require("dotenv").config();
 const indexData = require("../index");
+const UWU = process.env.UWUID;
 
 module.exports = async (msg, args) => {
-  if (msg.channel.id !== 783936497791270972) return;
+  if (msg.channel.id !== UWU) return;
+  console.log("Received UWU Request");
 
   message = "";
   for (var i = 0; i < args.length; i++) {
