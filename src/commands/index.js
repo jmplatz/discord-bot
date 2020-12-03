@@ -32,7 +32,7 @@ module.exports = async (msg) => {
     // Getting just the command
     const args = msg.content.split(' ');
     if(msg.channel.id === UWU){
-      console("Processing UWU Request")
+      console.log("Processing UWU Request");
       uwu(msg, args);
     }
     // If it is an empty string or doesn't include !, return
