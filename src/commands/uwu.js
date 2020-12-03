@@ -15,7 +15,7 @@ module.exports = async (msg, args) => {
 
   returnMessage = indexData.owoify(message, 'uwu');
   username = msg.author.username;
-  returnMessage = ": " + username + " : " + returnMessage;
+  returnMessage = "**: " + username + " :** " + returnMessage;
   // stack overflow stuff
   //await indexData.client.channels.cache.get(args[0].toString()).send(mess);
   msg.channel.send(returnMessage).then(() => {
