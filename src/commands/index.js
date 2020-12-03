@@ -39,6 +39,7 @@ module.exports = async (msg) => {
     if (Object.keys(commands).includes(command)) {
       commands[command](msg, args);
     }
+    console.log(msg.channel.id);
     if(msg.channel.id === UWU){
       console("Processing UWU Request")
       uwu(msg, args);
