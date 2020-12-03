@@ -9,6 +9,7 @@ const listAssignmentsCommand = require('./upcomingAssignments');
 const uptimeCommand = require('./uptime.js');
 const sendCommand = require('./send.js');
 const addevent = require('./addevent.js');
+const uwu = require('./uwu.js');
 
 const guildID = process.env.GUILD_ID;
 
@@ -22,6 +23,7 @@ const commands = {
   addduedate: addevent,
   uptime: uptimeCommand,
   send: sendCommand,
+
 };
 
 module.exports = async (msg) => {
@@ -35,6 +37,9 @@ module.exports = async (msg) => {
     // If in list, continue to command
     if (Object.keys(commands).includes(command)) {
       commands[command](msg, args);
+    }
+    if(msg.channel.id === 783936497791270972){
+      uwu(msg, args);
     }
   }
 };

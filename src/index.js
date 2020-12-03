@@ -4,6 +4,7 @@ const schedule = require('node-schedule');
 const commandHandler = require('./commands');
 const vcHandler = require('./vcManagement')
 const scheduledCommands = require('./scheduledCommands');
+const owoify = require('owoify-js').default
 // Create new instance of Client
 const client = new Discord.Client();
 
@@ -27,6 +28,7 @@ process.on('unhandledRejection', (error) => {
 
 exports.client = client;
 exports.discord = Discord;
+exports.owoify = owoify;
 
 let rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
