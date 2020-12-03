@@ -31,6 +31,10 @@ module.exports = async (msg) => {
   if (msg.guild.id === guildID) {
     // Getting just the command
     const args = msg.content.split(' ');
+    if(msg.channel.id === UWU){
+      console("Processing UWU Request")
+      uwu(msg, args);
+    }
     // If it is an empty string or doesn't include !, return
     if (args[0].charAt(0) !== '!') return;
     // Remove ! from command
@@ -40,9 +44,6 @@ module.exports = async (msg) => {
       commands[command](msg, args);
     }
     console.log(msg.channel.id);
-    if(msg.channel.id === UWU){
-      console("Processing UWU Request")
-      uwu(msg, args);
-    }
+    
   }
 };
