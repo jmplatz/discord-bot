@@ -15,5 +15,8 @@ module.exports = async (msg, args) => {
 
   // stack overflow stuff
   //await indexData.client.channels.cache.get(args[0].toString()).send(mess);
-  msg.edit(returnMessage);
+  msg.channel.send(returnMessage).then(() => {
+    msg.delete();
+  })
+  
 };
