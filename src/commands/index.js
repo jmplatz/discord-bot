@@ -31,8 +31,9 @@ module.exports = async (msg) => {
   if (msg.guild.id === guildID) {
     // Getting just the command
     const args = msg.content.split(' ');
+
+    // Uwu Channel Manager
     if(msg.channel.id === UWU){
-      console.log("Processing UWU Request");
       uwu(msg, args);
     }
     // If it is an empty string or doesn't include !, return
@@ -43,7 +44,6 @@ module.exports = async (msg) => {
     if (Object.keys(commands).includes(command)) {
       commands[command](msg, args);
     }
-    console.log(msg.channel.id);
     
   }
 };
