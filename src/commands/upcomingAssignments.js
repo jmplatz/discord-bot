@@ -103,9 +103,6 @@ module.exports = async (msg, args) => {
               if (msg.channel.id == UWU) {
                 title = indexData.owoify(title, "uwu");
               }
-              if (msg.channel.id == UWU) {
-                response = indexData.owoify(response, "uwu");
-              }
               foundEmbed.addField(title, response, false);
             }
 
@@ -114,8 +111,15 @@ module.exports = async (msg, args) => {
             currOutput = weekday + monthtext + day;
           }
           //console.log(`${start} - ${event.summary}`);
-          response += ` - \`${event.summary}\` \n`;
+          sum = event.summary;
+          if (msg.channel.id == UWU) {
+            sum = indexData.owoify(sum, "uwu");
+          }
+          response += ` - \`${sum}\` \n`;
         });
+        if (msg.channel.id == UWU) {
+          title = indexData.owoify(title, "uwu");
+        }
         foundEmbed.addField(title, response, false);
 
         foundEmbed.setTimestamp();
