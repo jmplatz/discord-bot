@@ -61,7 +61,11 @@ module.exports = async (msg, args) => { //indexData.owoify(message, 'uwu');
       if (events.length) {
         
         const foundEmbed = new indexData.discord.MessageEmbed();
-        foundEmbed.setTitle('Assignments due within the next ' + dayModifier + ' days:');
+        let titlePartOne = 'Assignments due within the next ';
+        if (msg.channel.id == UWU) titlePartOne = indexData.owoify(titlePartOne, 'uwu');
+        let titlePartTwo = ' days:';
+        if (msg.channel.id == UWU) titlePartTwo = indexData.owoify(titlePartTwo, 'uwu');
+        foundEmbed.setTitle(titlePartOne + dayModifier + titlePartTwo);
         
 
         let currOutput = ""
