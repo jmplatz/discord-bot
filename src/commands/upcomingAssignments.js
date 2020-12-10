@@ -30,9 +30,13 @@ module.exports = async (msg, args) => { //indexData.owoify(message, 'uwu');
     if (msg.channel.id == UWU) message = indexData.owoify(message, 'uwu');
     await msg.channel.send(message);
   }else if(args[0] < 7){
-    await msg.channel.send("Date Modifier must be at least 7 days");
+    let message = "Date Modifier must be at least 7 days"
+    if (msg.channel.id == UWU) message = indexData.owoify(message, 'uwu');
+    await msg.channel.send(message);
   }else if(args[0] > 31){
-    await msg.channel.send("Max Date Modifier is 31 Days.");
+    let message = "Max Date Modifier is 31 Days."
+    if (msg.channel.id == UWU) message = indexData.owoify(message, 'uwu');
+    await msg.channel.send(message);
     dayModifier = 31;
   }else{
     dayModifier = args[0];
