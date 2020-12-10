@@ -2,6 +2,7 @@ const { google } = require('googleapis');
 require('dotenv').config();
 
 const indexData = require('../index')
+const UWU = process.env.UWUID;
 
 function getWeekDay(date){
   let weekdays = new Array(
@@ -19,13 +20,15 @@ function getMonthTextual(date){
   return months[month];
 }
 
-module.exports = async (msg, args) => {
+module.exports = async (msg, args) => { //indexData.owoify(message, 'uwu');
   const GOOGLE_API = process.env.GOOGLE_API_KEY;
   let dayModifier = 7;
   if(args[0] == undefined){
     // Don't need to do anything
   }else if(isNaN(args[0])){
-    await msg.channel.send("Invalid Date Modifier, Assuming 7 Days.");
+    let message = "Invalid Date Modifier, Assuming 7 Days."
+    if (msg.channel.id == UWU) message = indexData.owoify(message, 'uwu');
+    await msg.channel.send(message);
   }else if(args[0] < 7){
     await msg.channel.send("Date Modifier must be at least 7 days");
   }else if(args[0] > 31){
