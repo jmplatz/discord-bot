@@ -129,9 +129,9 @@ module.exports = async (msg, args) => {
         await msg.channel.send(foundEmbed);
       } else {
         const noneFoundEmbed = new indexData.discord.MessageEmbed();
-        noneFoundEmbed.setTitle("Upcoming Due Dates");
+        noneFoundEmbed.setTitle("👀 Nothing Found Within The Next " + dayModifier + " Days!");
         noneFoundEmbed.setDescription(
-          "No assignments where found within the next week."
+          "🎆🎆🎆"
         );
         noneFoundEmbed.setTimestamp();
         noneFoundEmbed.setFooter(
