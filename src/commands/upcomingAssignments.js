@@ -131,7 +131,7 @@ module.exports = async (msg, args) => {
         const noneFoundEmbed = new indexData.discord.MessageEmbed();
         noneFoundEmbed.setTitle("👀 Nothing Found Within The Next " + dayModifier + " Days!");
         noneFoundEmbed.setDescription(
-          "🎆🎆🎆"
+          "🎉🎉🎉🎉🎉"
         );
         noneFoundEmbed.setTimestamp();
         noneFoundEmbed.setFooter(
