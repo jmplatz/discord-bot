@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-const guildID = process.env.GUILD_ID;
 
 module.exports = async (reaction, user) => {
     // When we receive a reaction we check if the reaction is partial or not
+    console.log(reaction);
 	if (reaction.partial) {
 		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
 		try {
