@@ -15,7 +15,7 @@ module.exports = async (reaction, user) => {
     }
     
     if(reaction.emoji.name === '📌' && reaction.count === 1) {
-        await reaction.message.pin({reason: 'Pinned by ' + reaction.message.author});
+        await reaction.message.pin({reason: 'Pinned by ' + reaction.message.author.username});
     }
 	
 }
