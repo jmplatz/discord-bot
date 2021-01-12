@@ -2,6 +2,7 @@ require('dotenv').config();
 
 
 module.exports = async (reaction, user) => {
+    console.log(user);
     // When we receive a reaction we check if the reaction is partial or not
 	if (reaction.partial) {
 		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
