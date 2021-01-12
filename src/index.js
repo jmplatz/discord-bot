@@ -7,7 +7,7 @@ const scheduledCommands = require('./scheduledCommands');
 const reactionManagement = require('./reactionManagement');
 const owoify = require('owoify-js').default
 // Create new instance of Client
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 const {
   BOT_TOKEN,
