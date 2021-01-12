@@ -90,6 +90,7 @@ module.exports = async (msg, args) => {
 
         let currOutput = "";
         events.map((event, i) => {
+          console.log(event.start.dateTime);
           const start = event.start.dateTime.substring(0, 10);
           const year = start.substring(0, 4);
           const month = start.substring(5, 7);
