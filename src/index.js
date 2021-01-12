@@ -19,7 +19,7 @@ client.once('ready', () => {
 
 client.on('message', commandHandler);
 client.on('voiceStateUpdate', vcHandler);
-client.in('messageReactionAdd', reactionManagement);
+client.on('messageReactionAdd', reactionManagement);
 
 client.login(BOT_TOKEN);
 
