@@ -4,6 +4,7 @@ const schedule = require('node-schedule');
 const commandHandler = require('./commands');
 const vcHandler = require('./vcManagement')
 const scheduledCommands = require('./scheduledCommands');
+const reactionManagement = require('./reactionManagement');
 const owoify = require('owoify-js').default
 // Create new instance of Client
 const client = new Discord.Client();
@@ -17,7 +18,8 @@ client.once('ready', () => {
 });
 
 client.on('message', commandHandler);
-client.on('voiceStateUpdate', vcHandler)
+client.on('voiceStateUpdate', vcHandler);
+client.in('messageReactionAdd', reactionManagement);
 
 client.login(BOT_TOKEN);
 
