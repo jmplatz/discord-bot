@@ -3,7 +3,6 @@ require('dotenv').config();
 
 module.exports = async (reaction, user) => {
     // When we receive a reaction we check if the reaction is partial or not
-    console.log(reaction);
 	if (reaction.partial) {
 		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
 		try {
@@ -15,7 +14,7 @@ module.exports = async (reaction, user) => {
 		}
     }
     
-    if(reaction.emoji === '📌') {
+    if(reaction.emoji.name === '📌' && reaction.count === 1) {
         await reaction.message.pin({reason: 'Pinned by ' + reaction.message.author});
     }
 	// Now the message has been cached and is fully available
