@@ -89,6 +89,7 @@ module.exports = async (msg, args) => {
         foundEmbed.setTitle(titlePartOne + dayModifier + titlePartTwo);
 
         let currOutput = "";
+        console.log(events)
         events.map((event, i) => {
           console.log(event.start.dateTime);
           const start = event.start.dateTime.substring(0, 10);
